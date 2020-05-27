@@ -1,22 +1,31 @@
 import React, { Component } from 'react';
-import Card from '../components/Card/Card';
+import CardList from '../components/CardList/CardList';
+import SearchBox from '../components/SearchBox/SearchBox';
+import {items} from '../database';
 import './App.css';
 
 class App extends Component {
   constructor() {
       super()
       this.state = {
-          robots: [],
+          items: items,
           searchfield: ''
       }
   }
+  onSearchChange = (event) => {
+    this.setState({ searchfield: event.target.value })
+  }
   render() {
-      return (
-        <div className='tc'>
-          <h1 className='f1'>My Garden App</h1>
-          <Card />
-        </div>
-      );  
+    const filteredItems = this.state.items.filter(item => {
+      return item.name.toLowerCase().includes(this.state.searchfield.toLowerCase());
+    })
+    return (
+      <div className='tc'>
+        <h1 className='f1'>My Garden App</h1>
+        <SearchBox searchChange={this.onSearchChange}/>
+        <CardList items={filteredItems} />
+      </div>
+    );
   }
 }
 
