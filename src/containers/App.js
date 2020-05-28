@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import CardList from '../components/CardList/CardList';
 import SearchBox from '../components/SearchBox/SearchBox';
+import ItemList from '../components/ItemList/ItemList';
 import {items} from '../database';
 import './App.css';
 
@@ -23,7 +24,7 @@ class App extends Component {
       <div className='tc'>
         <h1 className='f1'>My Garden App</h1>
         <SearchBox searchChange={this.onSearchChange}/>
-        <CardList items={filteredItems} />
+        <ItemList items={filteredItems} />
       </div>
     );
   }
